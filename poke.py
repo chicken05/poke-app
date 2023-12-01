@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 
-if "yresult" not in st.session_state: #new
+if "yresult" not in st.session_state:
     st.session_state.yresult = []
 if "nresult" not in st.session_state:
     st.session_state.nresult = []
@@ -14,7 +14,7 @@ title()
 
 def weight():
     st.header("First, let's figure out how much you can lift.")
-    user_weight = st.number_input(label="Your Weight (lbs):", min_value=0) # new
+    user_weight = st.number_input(label="Your Weight (lbs):", min_value=0)
     kgs = round(user_weight * 0.453592, 2)
     max_lift = round(kgs * 1.2, 2)
     if user_weight > 0:
@@ -29,7 +29,7 @@ def can_lift(max_lift, weight, name):
     if max_lift >= weight:
         st.balloons() #new
         st.write(f"{name} is only {weight} kgs. Very liftable :)")
-        st.image("yes.gif", caption="RAAHH, you are SO strong!!", use_column_width=True) #new
+        st.image("yes.gif", caption="RAAHH, you are SO strong!!", use_column_width=True)
         st.session_state.yresult.append("yes")
     else:
         st.write(f"{name} is {weight} kgs. A little too heavy...")
@@ -56,13 +56,13 @@ def get_poke():
             if "sprites" in data and "official-artwork" in data["sprites"]["other"]:
                 image_url = data['sprites']["other"]["official-artwork"]["front_default"]
                 st.markdown(f'<div style="text-align: center;"><img src="{image_url}" alt="{name}" width="250"></div>', unsafe_allow_html=True)
-                if st.button(f"Let's see if you can lift {name}..."): #new
+                if st.button(f"Let's see if you can lift {name}..."):
                     result = True
                     can_lift(max_lift, weight, name)
             else:
-                st.warning("No official art :(") #new
+                st.warning("No official art :(")
         else:
-            st.error("That Pokemon can't be found. Check your input again.") #new
+            st.error("That Pokemon can't be found. Check your input again.")
     except:
         st.write("Please enter in a valid pokemon name.")
     if not result:
