@@ -29,11 +29,11 @@ def can_lift(max_lift, weight, name):
     if max_lift >= weight:
         st.balloons() #new
         st.write(f"{name} is only {weight} kgs. Very liftable :)")
-        st.image("images\yes.gif", caption="RAAHH, you are SO strong!!", use_column_width=True) #new
+        st.image("yes.gif", caption="RAAHH, you are SO strong!!", use_column_width=True) #new
         st.session_state.yresult.append("yes")
     else:
         st.write(f"{name} is {weight} kgs. A little too heavy...")
-        st.image("images\sad.gif", caption=f"You can't lift {name} now. More training required.", use_column_width=True)
+        st.image("sad.gif", caption=f"You can't lift {name} now. More training required.", use_column_width=True)
         st.session_state.nresult.append("no")
     
     st.subheader("How many Pokemons can you lift?:")
